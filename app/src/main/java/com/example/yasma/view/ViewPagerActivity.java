@@ -37,7 +37,5 @@ public class ViewPagerActivity extends AppCompatActivity {
         mTabLayout = (TabLayout) findViewById(R.id.htab_tabs);
         mTabLayout.setupWithViewPager(mViewPager);
 
-
-
     }
 }

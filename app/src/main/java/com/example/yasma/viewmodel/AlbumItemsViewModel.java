@@ -2,8 +2,10 @@ package com.example.yasma.viewmodel;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
+import android.view.View;
 
 import com.example.yasma.model.AlbumsResponse;
+import com.example.yasma.view.DetailsActivity;
 
 public class AlbumItemsViewModel extends BaseObservable
 {
@@ -21,6 +23,11 @@ public class AlbumItemsViewModel extends BaseObservable
     }
 
     public String getTitle(){
-        return albumsResponse.getTitle();
+        return "Title is : " +albumsResponse.getTitle();
+    }
+
+    public void onItemClick(View view) {
+
+        mContext.startActivity( DetailsActivity.launchAlbumDetails( view.getContext(), albumsResponse));
     }
 }

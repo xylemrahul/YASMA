@@ -1,4 +1,4 @@
-package com.example.yasma.view.fragments;
+package com.example.yasma.view.adapters;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
@@ -37,7 +37,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsAdapter
         return postsResponses.size();
     }
 
-    void setPostsResponsesList(List<PostsResponse> postsResponseList) {
+    public void setPostsResponsesList(List<PostsResponse> postsResponseList) {
         this.postsResponses = postsResponseList;
         notifyDataSetChanged();
     }
@@ -46,7 +46,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsAdapter
 
         ItemPostBinding itemPostBinding;
         public PostsAdapterViewHolder( ItemPostBinding itemPostBinding ) {
-            super(itemPostBinding.title);
+            super(itemPostBinding.rvPost);
             this.itemPostBinding = itemPostBinding;
         }
 

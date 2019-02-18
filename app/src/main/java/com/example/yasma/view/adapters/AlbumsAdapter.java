@@ -1,4 +1,4 @@
-package com.example.yasma.view.fragments;
+package com.example.yasma.view.adapters;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
@@ -6,7 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.example.yasma.databinding.ItemAlbumBindingImpl;
+import com.example.yasma.R;
+import com.example.yasma.databinding.ItemAlbumBinding;
 import com.example.yasma.model.AlbumsResponse;
 import com.example.yasma.viewmodel.AlbumItemsViewModel;
 
@@ -15,14 +16,13 @@ import java.util.List;
 
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumsAdapterViewHolder>
 {
-
     private List<AlbumsResponse> albumsResponseList = Collections.emptyList();
 
     @NonNull
     @Override
     public AlbumsAdapterViewHolder onCreateViewHolder( @NonNull ViewGroup parent, int viewType )
     {
-        ItemAlbumBindingImpl albumBinding = DataBindingUtil.inflate( LayoutInflater.from( parent.getContext() ),
+        ItemAlbumBinding albumBinding = DataBindingUtil.inflate( LayoutInflater.from( parent.getContext() ),
                                                                      R.layout.item_album,
                                                                 parent, false );
         return new AlbumsAdapterViewHolder( albumBinding );
@@ -40,16 +40,16 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.AlbumsAdap
         return albumsResponseList.size();
     }
 
-    void setAlbumsResponseList(List<AlbumsResponse> albumsResponseList) {
+    public void setAlbumsResponseList(List<AlbumsResponse> albumsResponseList) {
         this.albumsResponseList = albumsResponseList;
         notifyDataSetChanged();
     }
 
     static class AlbumsAdapterViewHolder extends RecyclerView.ViewHolder{
 
-        ItemAlbumBindingImpl itemAlbumBinding;
-        public AlbumsAdapterViewHolder( ItemAlbumBindingImpl itemAlbumBinding ) {
-            super(itemAlbumBinding.title);
+        ItemAlbumBinding itemAlbumBinding;
+        public AlbumsAdapterViewHolder( ItemAlbumBinding itemAlbumBinding ) {
+            super(itemAlbumBinding.rvAlbum);
             this.itemAlbumBinding = itemAlbumBinding;
         }
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.yasma.R;
 import com.example.yasma.databinding.FragmentPostsBinding;
+import com.example.yasma.view.adapters.PostsAdapter;
 import com.example.yasma.viewmodel.PostsViewModel;
 
 import java.util.Observable;
@@ -30,8 +31,8 @@ public class PostsFragment extends Fragment implements Observer {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         postDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_posts, container, false);
-        postDataBinding.listPe.setLayoutManager(new LinearLayoutManager(getContext()));
-        postDataBinding.listPe.setAdapter(new PostsAdapter());
+        postDataBinding.listPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        postDataBinding.listPosts.setAdapter(new PostsAdapter());
         return postDataBinding.getRoot();
     }
 
@@ -49,8 +50,10 @@ public class PostsFragment extends Fragment implements Observer {
     @Override
     public void update(Observable observable, Object arg) {
 
-        PostsAdapter adapter = (PostsAdapter) postDataBinding.listPe.getAdapter();
+        PostsAdapter adapter = (PostsAdapter) postDataBinding.listPosts.getAdapter();
         PostsViewModel postsViewModel = (PostsViewModel) observable;
-        adapter.setPostsResponsesList(postsViewModel.getmPostResponse());
+        if (adapter != null) {
+            adapter.setPostsResponsesList(postsViewModel.getmPostResponse());
+        }
     }
 }

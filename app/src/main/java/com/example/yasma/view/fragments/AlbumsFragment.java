@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yasma.R;
 import com.example.yasma.databinding.FragmentAlbumsBinding;
+import com.example.yasma.view.adapters.AlbumsAdapter;
 import com.example.yasma.viewmodel.AlbumsViewModel;
 
 import java.util.Observable;
@@ -20,15 +22,15 @@ public class AlbumsFragment extends Fragment implements Observer
 {
 
     private AlbumsViewModel albumsViewModel;
-    FragmentAlbumsBinding mAlbumsBinding;
+    private FragmentAlbumsBinding mAlbumsBinding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mAlbumsBinding = DataBindingUtil.inflate( inflater, R.layout.fragment_albums, container, false );
-        mAlbumsBinding.listA.setLayoutManager(new LinearLayoutManager( getContext()));
-        mAlbumsBinding.listA.setAdapter(new PostsAdapter());
+        mAlbumsBinding.listAlbums.setLayoutManager(new LinearLayoutManager( getContext()));
+        mAlbumsBinding.listAlbums.setAdapter(new AlbumsAdapter());
 
         return mAlbumsBinding.getRoot();
     }
@@ -48,8 +50,10 @@ public class AlbumsFragment extends Fragment implements Observer
     @Override
     public void update( Observable observable, Object o )
     {
-        AlbumsAdapter adapter = (AlbumsAdapter) mAlbumsBinding.listA.getAdapter();
+        AlbumsAdapter adapter = (AlbumsAdapter) mAlbumsBinding.listAlbums.getAdapter();
         AlbumsViewModel albumsViewModel = (AlbumsViewModel) observable;
-        adapter.setAlbumsResponseList(albumsViewModel.getmAlbumsResponse());
+        if (adapter != null) {
+            adapter.setAlbumsResponseList(albumsViewModel.getmAlbumsResponse());
+        }
     }
 }
