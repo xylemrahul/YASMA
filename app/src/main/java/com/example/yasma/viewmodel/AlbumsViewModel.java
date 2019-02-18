@@ -1,6 +1,6 @@
 package com.example.yasma.viewmodel;
 
-import com.example.yasma.Log;
+import com.example.yasma.Utils;
 import com.example.yasma.data.RetrofitService;
 import com.example.yasma.model.AlbumsResponse;
 import com.example.yasma.view.MyApplication;
@@ -27,7 +27,7 @@ public class AlbumsViewModel extends Observable
 
         RetrofitService mApiService = MyApplication.getInstance().mAPIService;
         Disposable disposable = mApiService.fetchAlbums().subscribeOn( Schedulers.io())
-                .observeOn( AndroidSchedulers.mainThread()).subscribe( this::updateAlbumDataSet, Log::logThrowable);
+                .observeOn( AndroidSchedulers.mainThread()).subscribe( this::updateAlbumDataSet, Utils::logThrowable);
     }
 
     private void updateAlbumDataSet( List<AlbumsResponse> albumsResponse) {

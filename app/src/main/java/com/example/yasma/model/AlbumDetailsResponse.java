@@ -4,7 +4,7 @@ package com.example.yasma.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AlbumPhoto {
+public class AlbumDetailsResponse {
 
     @SerializedName("albumId")
     private Integer albumId;

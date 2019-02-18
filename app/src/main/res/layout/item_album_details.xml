@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemalbumdetailsviewmodel"
+            type="com.example.yasma.viewmodel.ItemAlbumDetailsViewModel"/>
+    </data>
+    <RelativeLayout
+        android:id="@+id/rv_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/spacing">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_post"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:imageUrl="@{itemalbumdetailsviewmodel.pictureProfile}"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image_post"
+            android:layout_marginStart="@dimen/spacing"
+            android:layout_marginTop="@dimen/spacing"
+            android:layout_toEndOf="@+id/image_post"
+            android:text="@{itemalbumdetailsviewmodel.title}"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="mr gary allen"/>
+
+    </RelativeLayout>
+
+</layout>

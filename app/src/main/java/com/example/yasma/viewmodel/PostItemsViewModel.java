@@ -7,7 +7,7 @@ import android.databinding.BaseObservable;
 import com.example.yasma.model.PostsResponse;
 //import com.example.yasma.view.PostDetailActivity;
 
-public class PostItemsViewModel extends BaseObservable {
+public class PostItemsViewModel extends Observable {
 
     private PostsResponse postsResponse;
     private Context mContext;
