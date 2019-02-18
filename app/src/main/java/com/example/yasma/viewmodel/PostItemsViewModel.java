@@ -2,10 +2,12 @@ package com.example.yasma.viewmodel;
 
 import android.content.Context;
 import android.databinding.BaseObservable;
-//import android.view.View;
+import android.view.View;
 
 import com.example.yasma.model.PostsResponse;
-//import com.example.yasma.view.PostDetailActivity;
+import com.example.yasma.view.DetailsActivity;
+
+import java.util.Observable;
 
 public class PostItemsViewModel extends Observable {
 
@@ -22,11 +24,11 @@ public class PostItemsViewModel extends Observable {
     }
 
     public String getTitle(){
-        return postsResponse.getTitle();
+        return "Title is : " +postsResponse.getTitle();
     }
 
-//    public void onItemClick(View view) {
-//
-//        mContext.startActivity( PostDetailActivity.launchDetail( view.getContext(), postsResponse));
-//    }
+    public void onItemClick(View view) {
+
+        mContext.startActivity( DetailsActivity.launchPostDetails( view.getContext(), postsResponse));
+    }
 }
