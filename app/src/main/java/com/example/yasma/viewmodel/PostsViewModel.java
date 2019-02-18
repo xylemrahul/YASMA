@@ -1,6 +1,6 @@
 package com.example.yasma.viewmodel;
 
-import com.example.yasma.Log;
+import com.example.yasma.Utils;
 import com.example.yasma.data.RetrofitService;
 import com.example.yasma.model.PostsResponse;
 import com.example.yasma.view.MyApplication;
@@ -26,7 +26,7 @@ public class PostsViewModel extends Observable {
 
         RetrofitService mApiService = MyApplication.getInstance().mAPIService;
         Disposable disposable = mApiService.fetchPosts().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(this::updatePostsDataSet, Log::logThrowable);
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(this::updatePostsDataSet, Utils::logThrowable);
     }
 
     private void updatePostsDataSet(List<PostsResponse> postsResponses) {

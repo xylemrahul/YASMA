@@ -7,7 +7,9 @@ import android.view.View;
 import com.example.yasma.model.AlbumsResponse;
 import com.example.yasma.view.DetailsActivity;
 
-public class AlbumItemsViewModel extends BaseObservable
+import java.util.Observable;
+
+public class AlbumItemsViewModel extends Observable
 {
 
     private AlbumsResponse albumsResponse;

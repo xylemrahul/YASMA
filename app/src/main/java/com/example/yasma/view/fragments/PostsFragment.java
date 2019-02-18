@@ -18,7 +18,6 @@ import com.example.yasma.viewmodel.PostsViewModel;
 import java.util.Observable;
 import java.util.Observer;
 
-
 public class PostsFragment extends Fragment implements Observer {
 
     private PostsViewModel postsViewModel;
