@@ -1,21 +1,18 @@
 package com.example.yasma.view.fragments;
 
-import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModelProvider;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.yasma.R;
 import com.example.yasma.databinding.FragmentPostsBinding;
+import com.example.yasma.view.adapters.PostsAdapter;
 import com.example.yasma.viewmodel.PostsViewModel;
 
 import java.util.Observable;
@@ -34,8 +31,8 @@ public class PostsFragment extends Fragment implements Observer {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         postDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_posts, container, false);
-        postDataBinding.listPeople.setLayoutManager(new LinearLayoutManager(getContext()));
-        postDataBinding.listPeople.setAdapter(new PostsAdapter());
+        postDataBinding.listPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        postDataBinding.listPosts.setAdapter(new PostsAdapter());
         return postDataBinding.getRoot();
     }
 
@@ -43,11 +40,6 @@ public class PostsFragment extends Fragment implements Observer {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         postsViewModel = new PostsViewModel();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         setupObserver(postsViewModel);
     }
 
@@ -58,8 +50,10 @@ public class PostsFragment extends Fragment implements Observer {
     @Override
     public void update(Observable observable, Object arg) {
 
-        PostsAdapter adapter = (PostsAdapter) postDataBinding.listPeople.getAdapter();
+        PostsAdapter adapter = (PostsAdapter) postDataBinding.listPosts.getAdapter();
         PostsViewModel postsViewModel = (PostsViewModel) observable;
-        adapter.setPostsResponsesList(postsViewModel.getmPostResponse());
+        if (adapter != null) {
+            adapter.setPostsResponsesList(postsViewModel.getmPostResponse());
+        }
     }
 }

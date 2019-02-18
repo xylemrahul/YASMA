@@ -1,0 +1,88 @@
+Index: app/src/main/java/com/example/yasma/view/PostDetailActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/yasma/view/PostDetailActivity.java	(date 1550490707000)
++++ app/src/main/java/com/example/yasma/view/PostDetailActivity.java	(date 1550490707000)
+@@ -0,0 +1,29 @@
++package com.example.yasma.view;
++
++import android.content.Context;
++import android.content.Intent;
++import android.databinding.DataBindingUtil;
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v7.app.AppCompatActivity;
++
++import com.example.yasma.model.PostsResponse;
++
++public class PostDetailActivity extends AppCompatActivity
++{
++
++    private static String EXTRA = "EXTRA_POSTS_DETAILS";
++
++    @Override
++    protected void onCreate( @Nullable Bundle savedInstanceState )
++    {
++        super.onCreate( savedInstanceState );
++//        DataBindingUtil.bind( R.layo )
++    }
++
++    public static Intent launchDetail( Context context, PostsResponse postsResponse) {
++        Intent intent = new Intent(context, PostDetailActivity.class);
++        intent.putExtra(EXTRA, postsResponse);
++        return intent;
++    }
++}
+Index: app/src/main/java/com/example/yasma/viewmodel/PostItemsViewModel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/yasma/viewmodel/PostItemsViewModel.java	(date 1550489301000)
++++ app/src/main/java/com/example/yasma/viewmodel/PostItemsViewModel.java	(date 1550489531000)
+@@ -2,10 +2,10 @@
+ 
+ import android.content.Context;
+ import android.databinding.BaseObservable;
+-//import android.view.View;
++import android.view.View;
+ 
+ import com.example.yasma.model.PostsResponse;
+-//import com.example.yasma.view.PostDetailActivity;
++import com.example.yasma.view.PostDetailActivity;
+ 
+ public class PostItemsViewModel extends BaseObservable {
+ 
+@@ -25,8 +25,8 @@
+         return postsResponse.getTitle();
+     }
+ 
+-//    public void onItemClick(View view) {
+-//
+-//        mContext.startActivity( PostDetailActivity.launchDetail( view.getContext(), postsResponse));
+-//    }
++    public void onItemClick(View view) {
++
++        mContext.startActivity( PostDetailActivity.launchDetail( view.getContext(), postsResponse));
++    }
+ }
+Index: app/src/main/res/layout/item_post.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/item_post.xml	(date 1550489301000)
++++ app/src/main/res/layout/item_post.xml	(date 1550489531000)
+@@ -15,8 +15,8 @@
+         android:layout_height="wrap_content"
+         android:padding="@dimen/fab_margin"
+         android:layout_margin="@dimen/fab_margin"
+-        android:background="?attr/selectableItemBackground">
+-        <!--android:onClick="@{postitemsviewmodel::onItemClick}"-->
++        android:background="?attr/selectableItemBackground"
++        android:onClick="@{postitemsviewmodel::onItemClick}">
+ 
+         <TextView
+             android:id="@+id/title"
