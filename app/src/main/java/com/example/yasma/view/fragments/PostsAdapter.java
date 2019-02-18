@@ -17,6 +17,7 @@ import java.util.List;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsAdapterViewHolder> {
 
     private List<PostsResponse> postsResponses = Collections.emptyList();
+
     @NonNull
     @Override
     public PostsAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -28,7 +29,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsAdapter
 
     @Override
     public void onBindViewHolder(@NonNull PostsAdapterViewHolder postsAdapterViewHolder, int i) {
-        postsAdapterViewHolder.bindPeople(postsResponses.get(i));
+        postsAdapterViewHolder.bindPosts(postsResponses.get(i));
     }
 
     @Override
@@ -45,11 +46,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostsAdapter
 
         ItemPostBinding itemPostBinding;
         public PostsAdapterViewHolder( ItemPostBinding itemPostBinding ) {
-            super(itemPostBinding.itemPeople);
+            super(itemPostBinding.title);
             this.itemPostBinding = itemPostBinding;
         }
 
-        void bindPeople(PostsResponse postsResponse) {
+        void bindPosts(PostsResponse postsResponse) {
             if (itemPostBinding.getPostitemsviewmodel() == null) {
                 itemPostBinding.setPostitemsviewmodel(
                         new PostItemsViewModel(postsResponse, itemView.getContext()));
