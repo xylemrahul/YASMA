@@ -28,6 +28,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.yasma.view.ViewPagerActivity" />
         </activity>
+
+        <activity android:name=".view.FullScreenImageActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -23,7 +23,6 @@ import static com.example.yasma.Utils.POSTS_EXTRA;
 public class DetailsActivity extends AppCompatActivity
 {
 
-    private static String EXTRA = "EXTRAS";
     @Override
     protected void onCreate( @Nullable Bundle savedInstanceState )
     {
@@ -33,10 +32,10 @@ public class DetailsActivity extends AppCompatActivity
         Bundle extras = getIntent().getExtras();
         if( extras.get(POSTS_EXTRA) != null)
         {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
+            getSupportFragmentManager().beginTransaction().add(R.id.frame_container,
                     PostDetailsFragment.newInstance(getIntent().getExtras())).commit();
         }else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
+            getSupportFragmentManager().beginTransaction().add(R.id.frame_container,
                     AlbumDetailsFragment.newInstance(getIntent().getExtras())).commit();
         }
 
@@ -59,29 +58,6 @@ public class DetailsActivity extends AppCompatActivity
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-//        Bundle extras = getIntent().getExtras();
-//        if(extras !=null && extras.equals(POSTS_EXTRA)){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
-//                    PostDetailsFragment.newInstance(getIntent().getExtras())).commit();
-//        }
-//
-//        if(getIntent().getExtras().equals(ALBUMS_EXTRA)){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.frame_container,
-//                    AlbumDetailsFragment.newInstance(getIntent().getExtras())).commit();
-//        }
     }
 
     public static Intent launchPostDetails(Context context, PostsResponse postsResponse) {
